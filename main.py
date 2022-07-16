@@ -14,16 +14,17 @@ def number_check(user_guess, answer, count):
     if count >= 2:
         if user_guess > answer:
             print("Sorry, your guess was too high.  The answer was:", answer)
+            rerun()
         elif user_guess == answer:
             print("Congratulations!  You got the right answer!")
-            return
+            rerun()
         else:
             print("Sorry, your guess was too low.  The answer was:", answer)
         print("Game Over.")
-        return
+        rerun()
     elif user_guess == answer:
         print("Congratulations!  You got the right answer!")
-        return
+        rerun()
     elif user_guess > answer:
         print("Sorry, your answer was too high.  Try again.")
         user_guess = int(input())
@@ -33,4 +34,23 @@ def number_check(user_guess, answer, count):
         user_guess = int(input())
         number_check(user_guess, answer, count + 1)
 
+# Rerun Function
+def rerun():
+    print("")
+    print("Would you like to play again?")
+    rerun_choice = int(input("1 for Yes, 2 for No."))
+    if rerun_choice == 1:
+        print("Welcome back to the Number Guesser!\n", "What is your first guess?")
+        user_guess = int(input())
+        answer = int(random.randint(1, 20))
+        count = 0
+        number_check(user_guess,answer, count)
+    elif rerun_choice == 2:
+        print("Hope you had fun!")
+        return
+    else:
+        print("ERROR!  Try Again.")
+        rerun()
+
 number_check(user_guess, answer, count)
+
